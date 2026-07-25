@@ -11,7 +11,6 @@ def gerar_caminho_saida(nome_arquivo_input, pasta="out/forcaBruta"):
     return os.path.join(pasta, f"resultados_{nome_sem_extensao}.csv")
 
 def carregar_padroes(arquivo="padroes.json"):
-    """Carrega os padrões a serem testados de um arquivo JSON."""
     if not os.path.exists(arquivo):
         print(f"[ERRO] Arquivo de padrões '{arquivo}' não encontrado.")
         return []
@@ -77,20 +76,17 @@ def rodar_experimento_forca_bruta(caminho_dna, lista_padroes, arquivo_saida="res
         print("[ERRO] Nenhum padrão válido foi processado.")
         return
 
-    # Exportação para CSV
     df = pd.DataFrame(resultados)
     df.to_csv(arquivo_saida, index=False, encoding="utf-8")
     print(f"[SUCESSO] {os.path.basename(caminho_dna)} → {arquivo_saida}")
 
 
 if __name__ == "__main__":
-    # Carrega os padrões do arquivo padroes.json
     padroes_para_testar = carregar_padroes("padroes.json")
-    
+
     if not padroes_para_testar:
         print("[ERRO] Nenhum padrão foi carregado.")
     else:
-        # Percorre todos os arquivos na pasta input
         pasta_input = "input"
         if os.path.exists(pasta_input):
             arquivos_input = glob.glob(os.path.join(pasta_input, "*.txt"))
