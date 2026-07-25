@@ -5,9 +5,9 @@ import json
 import pandas as pd
 from algoritmos.ForcaBruta import busca_forca_bruta
 
-def gerar_caminho_saida(nome_arquivo_input, pasta="out/forcaBruta"):
+def gerar_caminho_saida(nome_arquivo_input, pasta):
     nome_sem_extensao = os.path.splitext(os.path.basename(nome_arquivo_input))[0]
-    
+
     return os.path.join(pasta, f"resultados_{nome_sem_extensao}.csv")
 
 def carregar_padroes(arquivo="padroes.json"):
@@ -39,22 +39,18 @@ def carregar_sequencia(path):
         
     return "".join(linha.strip() for linha in linhas)
 
-def rodar_experimento_forca_bruta(caminho_dna, lista_padroes, arquivo_saida="resultados_forca_bruta.csv"):
+def rodar_experimento_forca_bruta(caminho_dna, lista_padroes, pasta_saida="out/forcaBruta"):
     if not os.path.exists(caminho_dna):
         print(f"[ERRO] O arquivo '{caminho_dna}' não foi encontrado.")
         return
 
+    arquivo_saida = gerar_caminho_saida(caminho_dna, pasta_saida)
     texto_dna = carregar_sequencia(caminho_dna)
 
     resultados = []
-    tamanhos_permitidos = {3, 5, 10}
 
     for padrao in lista_padroes:
         tam = len(padrao)
-
-        if tam not in tamanhos_permitidos:
-            print(f"[ERRO] Sequências de tamanho {tam} não permitido")
-            continue
 
         inicio = time.perf_counter()
         posicoes, comparacoes = busca_forca_bruta(texto_dna, padrao)
@@ -78,7 +74,7 @@ def rodar_experimento_forca_bruta(caminho_dna, lista_padroes, arquivo_saida="res
 
     df = pd.DataFrame(resultados)
     df.to_csv(arquivo_saida, index=False, encoding="utf-8")
-    print(f"[SUCESSO] {os.path.basename(caminho_dna)} → {arquivo_saida}")
+    print(f"[SUCESSO] {os.path.basename(caminho_dna)} -> {arquivo_saida}")
 
 
 if __name__ == "__main__":
@@ -94,8 +90,7 @@ if __name__ == "__main__":
             if arquivos_input:
                 for caminho_arquivo in sorted(arquivos_input):
                     print(f"\n{'='*70}")
-                    arquivo_saida = gerar_caminho_saida(caminho_arquivo)
-                    rodar_experimento_forca_bruta(caminho_arquivo, padroes_para_testar, arquivo_saida)
+                    rodar_experimento_forca_bruta(caminho_arquivo, padroes_para_testar)
             else:
                 print(f"[ERRO] Nenhum arquivo .txt encontrado na pasta '{pasta_input}'.")
         else:
