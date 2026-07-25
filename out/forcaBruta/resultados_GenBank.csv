@@ -1,0 +1,19 @@
+Algoritmo,Tamanho (M),Padrão,Total Ocorrências,Primeiras Posições,Nº Comparações,Tempo (ms)
+Força Bruta,3,ATG,121,"[0, 37, 46, 51, 141]",7908,0.7304
+Força Bruta,3,TCG,9,"[17, 1394, 1720, 1786, 2349]",7241,0.634
+Força Bruta,3,TAA,106,"[44, 191, 202, 314, 335]",7250,0.6531
+Força Bruta,3,TAG,71,"[64, 236, 788, 895, 937]",7250,0.6721
+Força Bruta,3,TGA,155,"[23, 88, 116, 145, 197]",7363,0.6575
+Força Bruta,3,ZZZ,0,[],5590,0.4727
+Força Bruta,5,ACGTA,0,[],7824,0.6692
+Força Bruta,5,TGGAT,5,"[1, 652, 1113, 4081, 5343]",7484,0.6422
+Força Bruta,5,ATGGA,10,"[0, 1055, 1779, 2004, 2538]",8053,0.6872
+Força Bruta,5,ATTCG,0,[],8016,0.6911
+Força Bruta,5,CACTG,3,"[743, 2774, 5098]",7168,0.6033
+Força Bruta,5,ZZZZZ,0,[],5588,0.4732
+Força Bruta,10,ATGGATTTAT,1,[0],8063,0.6896
+Força Bruta,10,CCTGTCTCCA,1,[99],6994,0.6749
+Força Bruta,10,CCACAGCCAC,1,[5576],7030,0.6047
+Força Bruta,10,ATTCGTGAGG,0,[],8009,0.8357
+Força Bruta,10,TGCTGCCAZZ,0,[],7472,0.8044
+Força Bruta,10,ZZZZZZZZZZ,0,[],5583,0.469
